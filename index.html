@@ -641,8 +641,21 @@ document.addEventListener('click',e=>{
   if(e.target.closest('#mapScroll')){ $('#mapOverlay').classList.toggle('zoomed'); return; }
 });
 
-(function(){const d=new Date(EVENT_INFO.dateISO+'T11:00:00');const days=Math.ceil((d-new Date())/86400000);const el=$('#countdown');
-  if(days>1)el.textContent=days+' days!'; else if(days===1)el.textContent='tomorrow!'; else if(days===0)el.textContent="it's today!"; else el.textContent='june 13';})();
+(function(){
+  const el=$('#countdown');
+  const start=new Date(EVENT_INFO.dateISO+'T11:00:00');
+  const end=new Date(EVENT_INFO.dateISO+'T18:00:00');
+  function tick(){
+    const now=new Date(), diff=start-now;
+    if(diff<=0){ el.textContent = now<end ? 'live now!' : 'june 13'; return; }
+    const d=Math.floor(diff/864e5),
+          h=Math.floor(diff%864e5/36e5),
+          m=Math.floor(diff%36e5/6e4),
+          s=Math.floor(diff%6e4/1e3);
+    el.textContent = d>0 ? `${d}d ${h}h ${m}m` : h>0 ? `${h}h ${m}m ${s}s` : `${m}m ${s}s`;
+  }
+  tick(); setInterval(tick,1000);
+})();
 
 if('serviceWorker' in navigator){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }); }
 

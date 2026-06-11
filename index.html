@@ -173,7 +173,7 @@ main{padding:18px 16px 28px;}
 .faq{border:2.5px solid var(--teal); border-radius:14px; margin-bottom:10px; overflow:hidden; background:#fff;}
 .faq button{width:100%; text-align:left; padding:13px 15px; font-weight:600; font-size:1rem; text-transform:lowercase; display:flex; justify-content:space-between; gap:10px; align-items:center;}
 .faq .ans{max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 15px;}
-.faq.open .ans{max-height:340px; padding:0 15px 14px;}
+.faq.open .ans{max-height:460px; padding:0 15px 14px;}
 .faq .ans p{margin:0; font-size:.92rem; font-family:var(--body);}
 .faq .x{font-family:var(--display); font-weight:700; transition:transform .3s; color:var(--watermelon);}
 .faq.open .x{transform:rotate(45deg);}
@@ -421,7 +421,7 @@ const PAGES = {
         <img class="float b" data-art="dog" style="--r:rotate(9deg)">
         <img class="float c" data-art="burger" style="--r:rotate(-6deg)">
         <img class="circle" data-art="logo_circle">
-        <p class="tagline">${EVENT_INFO.tagline}</p>
+        <p class="tagline">${EVENT_INFO.tagline.replace('back to','back<br>to')}</p>
         <p class="meta">${EVENT_INFO.dateLabel} · ${EVENT_INFO.hours}</p>
       </section>
       <div id="liveSlot"></div>
@@ -497,9 +497,8 @@ const PAGES = {
       return `${t}${l.z?' '+zlink(l.z,'(map)'):''}${l.tbc?'<span class="tbc">confirming</span>':''}`; };
     return `${titleBar('good to know','blossom')}
       <img class="section-ill" data-art="books">
-      <div class="card"><dl class="ig">
-        ${KNOW_INFO.map(b=>`<dt>${b.label}</dt>${b.lines.map(l=>`<dd>· ${lineTxt(l)}</dd>`).join('')}`).join('')}
-      </dl></div>
+      <div class="grouplabel"><span class="dot" style="background:var(--aqua)"></span>on the day</div>
+      <div class="stagger">${KNOW_INFO.map(b=>`<div class="faq"><button>${b.label}<span class="x">+</span></button><div class="ans">${b.lines.map((l,i)=>`<p${i?' style="margin-top:7px"':''}>${b.lines.length>1?'· ':''}${lineTxt(l)}</p>`).join('')}</div></div>`).join('')}</div>
       <div class="grouplabel"><span class="dot" style="background:var(--blossom)"></span>the quick answers</div>
       <div class="stagger">${FAQS.map(f=>`<div class="faq"><button>${f.q}<span class="x">+</span></button><div class="ans"><p>${f.a}</p></div></div>`).join('')}</div>`;
   },

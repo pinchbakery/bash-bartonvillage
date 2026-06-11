@@ -1,0 +1,15 @@
+{
+  "name": "BASH — Barton Annual Street Hang",
+  "short_name": "BASH",
+  "description": "taking it back to the street. june 13 on barton st, hamilton.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF1D2",
+  "theme_color": "#205065",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
